@@ -1,6 +1,5 @@
 import React, { Component } from 'React';
 import PropTypes from 'prop-types';
-
 import About from './About';
 
 class AboutContainer extends Component {
@@ -10,21 +9,19 @@ class AboutContainer extends Component {
 
   constructor (){
     super();
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 
     this.state = {
-      dataSource: this.ds,
+      dataSource: [],
       isLoading: true,
     }
   }
 
   componentDidMount() {
-    let endpoint = 'https://robot-data.firebaseio.com/robots.json';
+    let endpoint = 'https://r10app-95fea.firebaseio.com/code_of_conduct.json';
     fetch(endpoint)
-      // if fetch is successful, read our JSON out of the response
       .then((response) => response.json())
       .then((result) => {
-        this.setState({ dataSource: this.ds.cloneWithRows(result) });
+        this.setState({ dataSource: result });
       })
       .catch(error => console.log(`Error fetching JSON: ${error}`));
   }
@@ -36,7 +33,7 @@ class AboutContainer extends Component {
 
   render(){
     return(
-      <About />
+      <About codes={this.state.dataSource} />
     )
   }
 }

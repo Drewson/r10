@@ -1,4 +1,6 @@
-import UserContainer from './UserContainer';
-import User from './User';
-export { User };
-export default UserContainer;
+import AboutContainer from './AboutContainer';
+import About from './About';
+
+export { About };
+
+export default AboutContainer;

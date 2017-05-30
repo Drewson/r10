@@ -1,10 +1,18 @@
 import React, { Component } from 'React';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import About from './About';
+import { getConductLoading, getConductError, getConduct, _fetchConduct } from '../../redux/modules/conduct'
 
 class AboutContainer extends Component {
 
   static propTypes = {
+  }
+
+  static route = {
+    navigationBar: {
+      title: 'About',
+    }
   }
 
   constructor (){
@@ -17,13 +25,7 @@ class AboutContainer extends Component {
   }
 
   componentDidMount() {
-    let endpoint = 'https://r10app-95fea.firebaseio.com/code_of_conduct.json';
-    fetch(endpoint)
-      .then((response) => response.json())
-      .then((result) => {
-        this.setState({ dataSource: result });
-      })
-      .catch(error => console.log(`Error fetching JSON: ${error}`));
+    this.props.dispatch(_fetchConduct())
   }
   componentDidUpdate() {
     if ( this.state.dataSource && this.state.isLoading ) {
@@ -33,9 +35,15 @@ class AboutContainer extends Component {
 
   render(){
     return(
-      <About codes={this.state.dataSource} />
+      <About codes={this.state.codes} />
     )
   }
 }
 
-export default AboutContainer;
+function mapStateToProps(state) {
+    return {
+        codes: state.codes
+    };
+}
+
+export default connect(mapStateToProps)(AboutContainer);

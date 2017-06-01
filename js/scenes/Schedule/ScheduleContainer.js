@@ -2,9 +2,8 @@ import React, { Component } from 'React';
 import PropTypes from 'prop-types';
 import Schedule from './Schedule';
 import { connect } from 'react-redux';
-import { ListView } from 'react-native';
 import { _fetchSessions } from '../../redux/modules/sessions'
-import { ActivityIndicator } from 'react-native'
+import { ActivityIndicator, ListView } from 'react-native'
 
 class ScheduleContainer extends Component {
 
@@ -43,7 +42,7 @@ function mapStateToProps(state){
   return {
     dataSource: ds.cloneWithRowsAndSections(
       state.sessions.sessionData.dataBlob,
-      state.sessions.sessionData.sessionIds,
+      state.sessions.sessionData.sectionIds,
       state.sessions.sessionData.rowIds,
     ),
     isLoading: state.sessions.isLoading

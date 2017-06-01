@@ -1,7 +1,7 @@
 import React from 'React';
 import { ListView, View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
-
+import SessionListItem from '../../components/SessionListItem/';
 import { styles } from './styles';
 
 const Schedule = ({ dataSource }) => {
@@ -10,14 +10,9 @@ const Schedule = ({ dataSource }) => {
       dataSource={dataSource}
       renderRow={(rowData) => {
         return (
-          <View id={rowData.session_id}>
-            <Text>{rowData.start_time}</Text>
-            <Text>{rowData.location}</Text>
-            <Text>{rowData.description}</Text>
-          </View>
+          <SessionListItem rowData={rowData} currentNavigatorUID="schedule" />
         )
-      }
-    }
+      }}
     />
   );
 }

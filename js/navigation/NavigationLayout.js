@@ -9,6 +9,8 @@ import Router from './router';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { colors, typography } from '../config/styles'
 import {Text} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import { styles } from './styles'
 
 const defaultRouteConfig = {
   navigationBar:{
@@ -16,10 +18,14 @@ const defaultRouteConfig = {
     titleStyle: {
       fontFamily: typography.fontMain
     },
-    backgroundColor: colors.red,
-    // renderBackground: () => (
-    //   //return linear gradient component package stuff
-    // )
+    renderBackground: () => (
+      <LinearGradient
+        colors={['#cf392a', '#9963ea']}
+        style={styles.linearGradient}
+        start={{x: 0.25, y: 1}} end={{x: 1, y: 0.25}}
+      >
+      </LinearGradient>
+    ),
   }
 }
 
@@ -34,7 +40,7 @@ class NavigationLayout extends Component {
   render() {
     return (
       <TabNavigation
-        initialTab="about"
+        initialTab="schedule"
         tabBarColor={colors.black}
       >
 
@@ -45,6 +51,7 @@ class NavigationLayout extends Component {
           renderTitle={this.renderTitle}
         >
           <StackNavigation
+            navigatorUID="schedule"
             initialRoute={Router.getRoute('schedule')}
             defaultRouteConfig={defaultRouteConfig}
           />

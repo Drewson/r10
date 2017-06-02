@@ -18,12 +18,11 @@ class FavesContainer extends Component {
   }
 
   componentDidMount(){
-    this.props.dispatch(_fetchSessions())
     this.props.dispatch(_fetchFaves())
+    this.props.dispatch(_fetchSessions())
   }
 
   render(){
-    console.log(this.props.dataSource)
     if(this.props.isLoading){
       return (
         <ActivityIndicator animating={true} size="small" color="black" />
@@ -49,7 +48,7 @@ function mapStateToProps(state){
       state.faves.favesData.sectionIds,
       state.faves.favesData.rowIds,
     ),
-    isLoading: state.sessions.isLoading,
+    isLoading: state.faves.isLoading,
   }
 }
 

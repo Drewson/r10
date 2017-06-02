@@ -9,7 +9,10 @@ export const styles = StyleSheet.create({
     fontSize:40,
     textAlign: 'center',
   },
-  conductDescription: {
-
+  closedDescription: {
+    height: 0,
+  },
+  openDescription: {
+    height: 'auto'
   }
 });

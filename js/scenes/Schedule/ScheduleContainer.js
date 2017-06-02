@@ -19,12 +19,12 @@ class ScheduleContainer extends Component {
   }
 
   componentDidMount(){
-    this.props.dispatch(_fetchSessions())
     this.props.dispatch(_fetchFaves())
+    this.props.dispatch(_fetchSessions())
   }
 
   render(){
-    if(this.props.isLoading && this.props.faveIds){
+    if(this.props.isLoading){
       return (
         <ActivityIndicator animating={true} size="small" color="black" />
       )

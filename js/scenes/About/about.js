@@ -1,10 +1,15 @@
 import React from 'React';
-import { ScrollView, View, Text, Image } from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  Image,
+} from 'react-native';
 import Conduct from '../../components/ConductItem/index';
 import PropTypes from 'prop-types';
 
 import { styles } from './styles';
-
+//this.state.expanded change on click, slide 24, expanded spinvalue in state
 const About = ({ codes }) => {
   return(
     <ScrollView style={styles.container}>

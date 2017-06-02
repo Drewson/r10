@@ -25,10 +25,13 @@ class SessionContainer extends Component {
   deleteFavorite(data){
     this.props.dispatch(deleteFavorite(data.session_id))
   }
-
   render(){
-    console.log(this.props.faveIds)
-    return (
+    if(this.props.isLoading){
+      return (
+        <ActivityIndicator animating={true} size="small" color="black" />
+      )
+    } else {
+      return(
       <Session
         data={this.props.sessionData}
         speaker={this.props.speakers}
@@ -36,12 +39,14 @@ class SessionContainer extends Component {
         deleteFavorite={this.deleteFavorite.bind(this)}
         faveIds={this.props.faveIds}
       />
-    )
+      )
+    }
   }
 }
 
 function mapStateToProps(state) {
   return {
+    isLoading: state.sessions.isLoading,
     speakers: state.speakers.speakerInfo,
     faveIds: state.faves.faveIds,
   }

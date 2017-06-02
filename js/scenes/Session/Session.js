@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import moment from 'moment';
 import { styles } from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { goToSpeaker } from '../../lib/navigationHelpers';
 
 const Session = ({ data, speaker, addFavorite, deleteFavorite, faveIds }) => {
   return (
@@ -13,11 +14,16 @@ const Session = ({ data, speaker, addFavorite, deleteFavorite, faveIds }) => {
       <Text style={styles.time}>{moment.unix(data.start_time).format('h:mm A')}</Text>
       <Text style={styles.description}>{data.description}</Text>
       <Text style={styles.present}>Presented By: </Text>
-      <Image
-        source={{uri: speaker.image}}
-        style={styles.image}
-      ></Image>
-      <Text style={styles.speaker}>{speaker.name}</Text>
+      <TouchableOpacity onPress={() => goToSpeaker(speaker)} style={styles.speakerContainer}>
+      {
+        speaker.image !== '' &&
+        <Image
+          source={{uri: speaker.image}}
+          style={styles.image}
+        ></Image>
+      }
+        <Text style={styles.speaker}>{speaker.name}</Text>
+      </TouchableOpacity>
       {
         faveIds.includes(data.session_id) &&
         <Icon name={Platform.OS === "ios"  ? 'ios-heart' : 'md-heart'} size={24} style={styles.heart} />
@@ -34,7 +40,7 @@ const Session = ({ data, speaker, addFavorite, deleteFavorite, faveIds }) => {
           </LinearGradient>
         </TouchableOpacity>
         :
-        <TouchableOpacity onPress={() => deleteFavorite(data)}>
+        <TouchableOpacity onPress={() => deleteFavorite(data)} style={styles.buttonContainer} >
           <LinearGradient
             colors={['#9963ea', '#8797D6']}
             style={styles.linearGradient}

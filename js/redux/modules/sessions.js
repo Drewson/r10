@@ -7,7 +7,7 @@ const GET_SESSION = 'GET_SESSION';
 
 const getSessionLoading = () => ({ type: GET_SESSION_LOADING });
 const getSessionError = (error) => ({ type: GET_SESSION_ERROR, payload: error });
-const getSession = (codes) => ({ type: GET_SESSION, payload: codes })
+const getSession = (sess) => ({ type: GET_SESSION, payload: sess })
 
 
 export const _fetchSessions = () => (dispatch) => {

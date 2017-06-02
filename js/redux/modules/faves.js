@@ -12,13 +12,12 @@ export const addFavorite = (faveIds) => ({ type: ADD_FAVORITE, payload: faveIds 
 export const deleteFavorite = (faveIds) => ({ type: DELETE_FAVORITE, payload: faveIds })
 
 const getFavesLoading = () => ({ type: LOADING_FAVES })
-const getFavesError = () => ({ type: GET_FAVES_ERROR })
+const getFavesError = (err) => ({ type: GET_FAVES_ERROR, payload: err})
 const getFaves = (faves) => ({ type: GET_FAVES, payload: faves })
 
 const faveIds = queryFaves();
 
 export const _fetchFaves = () => (dispatch) => {
-
   dispatch(getFavesLoading());
 
   return fetch(`${firebaseUrl}/sessions.json`)
@@ -48,7 +47,7 @@ export default function reducer(state = {
     case GET_FAVES_ERROR: {
       return Object.assign({}, state, {
         isLoading: false,
-        error: 'Could not get faves'
+        error: action.payload
       })
     }
     case LOADING_FAVES: {

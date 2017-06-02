@@ -35,17 +35,30 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.mediumGrey,
   },
+  speakerContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 10,
+  },
   speaker: {
     fontSize: 18,
     fontWeight: '500',
+    paddingLeft: 10,
   },
   image: {
     width: 50,
     height: 50,
     borderRadius: 25,
   },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
   linearGradient: {
-    padding: 15,
+    padding: 10,
+    width: '80%',
     borderRadius: 20,
   },
   heart: {

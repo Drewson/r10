@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import About from './About';
 import { _fetchConduct } from '../../redux/modules/conduct'
-import { ActivityIndicator } from 'react-native'
+import { ActivityIndicator, } from 'react-native'
 
 class AboutContainer extends Component {
 

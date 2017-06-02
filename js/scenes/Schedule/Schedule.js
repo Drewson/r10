@@ -5,7 +5,6 @@ import SessionListItem from '../../components/SessionListItem/';
 import { styles } from './styles';
 
 const Schedule = ({ dataSource, addFavorite, faveIds }) => {
-  console.log(faveIds)
   return (
     <ListView
       dataSource={dataSource}

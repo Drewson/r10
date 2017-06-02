@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Schedule from './Schedule';
 import { connect } from 'react-redux';
 import { _fetchSessions } from '../../redux/modules/sessions'
+import { _fetchFaves, getFaveIds } from '../../redux/modules/faves';
+import { queryFaves } from '../../config/models'
 import { ActivityIndicator, ListView } from 'react-native'
 
 class ScheduleContainer extends Component {
@@ -17,17 +19,18 @@ class ScheduleContainer extends Component {
   }
 
   componentDidMount(){
-    this.props.fetchSessions()
+    this.props.dispatch(_fetchSessions())
+    this.props.dispatch(_fetchFaves())
   }
 
   render(){
-    if(this.props.isLoading){
+    if(this.props.isLoading && this.props.faveIds){
       return (
         <ActivityIndicator animating={true} size="small" color="black" />
       )
     } else {
       return(
-      <Schedule dataSource={this.props.dataSource} />
+      <Schedule dataSource={this.props.dataSource} faveIds={this.props.faveIds} />
       )
     }
   }
@@ -45,16 +48,9 @@ function mapStateToProps(state){
       state.sessions.sessionData.sectionIds,
       state.sessions.sessionData.rowIds,
     ),
-    isLoading: state.sessions.isLoading
+    isLoading: state.sessions.isLoading,
+    faveIds: state.faves.faveIds,
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchSessions () {
-      dispatch(_fetchSessions())
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ScheduleContainer);
+export default connect(mapStateToProps)(ScheduleContainer);

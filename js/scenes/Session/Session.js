@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, Image, Platform } from 'react-native';
+import { TouchableOpacity, View, Text, Image, Platform } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import moment from 'moment';
 import { styles } from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const Session = ({ data, speaker }) => {
+const Session = ({ data, speaker, addFavorite, deleteFavorite, faveIds }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.location}>{data.location}</Text>
@@ -17,7 +18,32 @@ const Session = ({ data, speaker }) => {
         style={styles.image}
       ></Image>
       <Text style={styles.speaker}>{speaker.name}</Text>
-        <Icon name={Platform.OS === "ios"  ? 'ios-heart' : 'md-heart'} size={24}/>
+      {
+        faveIds.includes(data.session_id) &&
+        <Icon name={Platform.OS === "ios"  ? 'ios-heart' : 'md-heart'} size={24} style={styles.heart} />
+      }
+      {
+        !faveIds.includes(data.session_id) ?
+        <TouchableOpacity onPress={() => addFavorite(data)}>
+          <LinearGradient
+            colors={['#9963ea', '#8797D6']}
+            style={styles.linearGradient}
+            start={{x: 0, y: .15}} end={{x: 1, y: 0.15}}
+          >
+            <Text style={styles.buttonText}>Add To Favorites</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        :
+        <TouchableOpacity onPress={() => deleteFavorite(data)}>
+          <LinearGradient
+            colors={['#9963ea', '#8797D6']}
+            style={styles.linearGradient}
+            start={{x: 0, y: .1}} end={{x: 1, y: 0.1}}
+          >
+            <Text style={styles.buttonText}>Remove From Favorites</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      }
     </View>
   )
 }

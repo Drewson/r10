@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import SessionListItem from '../../components/SessionListItem/';
 import { styles } from './styles';
 
-const Schedule = ({ dataSource }) => {
+const Schedule = ({ dataSource, addFavorite, faveIds }) => {
+  console.log(faveIds)
   return (
     <ListView
       dataSource={dataSource}
       renderRow={(rowData) => {
         return (
-          <SessionListItem rowData={rowData} currentNavigatorUID="schedule" />
+          <SessionListItem rowData={rowData} currentNavigatorUID="schedule" faveIds={faveIds} />
         )
       }}
     />

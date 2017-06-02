@@ -42,6 +42,20 @@ export const styles = StyleSheet.create({
   image: {
     width: 50,
     height: 50,
-    borderRadius: 50,
+    borderRadius: 25,
   },
+  linearGradient: {
+    padding: 15,
+    borderRadius: 20,
+  },
+  heart: {
+    position: 'absolute',
+    top: 30,
+    right: 30,
+  },
+  buttonText: {
+    backgroundColor: 'rgba(52, 52, 52, 0)',
+    color: 'white',
+    textAlign:'center'
+  }
 });

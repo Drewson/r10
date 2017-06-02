@@ -58,6 +58,19 @@ class NavigationLayout extends Component {
         </DrawerItem>
 
         <DrawerItem
+          id="faves"
+          title="faves"
+          renderIcon={isSelected => this.renderIcon('md-heart', isSelected)}
+          renderTitle={isSelected => this.renderTitle('Favorites', isSelected)}
+        >
+          <StackNavigation
+            id="about"
+            initialRoute={Router.getRoute('faves')}
+            defaultRouteConfig={defaultRouteConfig}
+          />
+        </DrawerItem>
+
+        <DrawerItem
           id="about"
           title="about"
           renderIcon={isSelected => this.renderIcon('md-information-circle', isSelected)}
@@ -69,6 +82,7 @@ class NavigationLayout extends Component {
             defaultRouteConfig={defaultRouteConfig}
           />
         </DrawerItem>
+
       </DrawerNavigation>
     );
   }

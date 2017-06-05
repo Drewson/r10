@@ -1,10 +1,12 @@
 import React, { Component } from 'React';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { realm } from '../../config/models'
 import Session from './Session';
 import { ActivityIndicator, ListView, View, Text } from 'react-native';
 import { _fetchSpeakers } from '../../redux/modules/speakers';
-import { deleteFavorite, addFavorite, _fetchFaves } from '../../redux/modules/faves';
+import { _fetchFaves } from '../../redux/modules/faves';
+import { createFave, deleteFave } from '../../config/models'
 
 class SessionContainer extends Component {
   static route = {
@@ -19,11 +21,11 @@ class SessionContainer extends Component {
   }
 
   newFavorite(data){
-    this.props.dispatch(addFavorite(data.session_id))
+    createFave(data.session_id)
   }
 
   deleteFavorite(data){
-    this.props.dispatch(deleteFavorite(data.session_id))
+    deleteFave(data.session_id)
   }
   render(){
     if(this.props.isLoading){

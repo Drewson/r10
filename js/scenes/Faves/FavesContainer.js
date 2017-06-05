@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { _fetchSessions } from '../../redux/modules/sessions';
 import { _fetchFaves } from '../../redux/modules/faves';
 import { ActivityIndicator, ListView, Text } from 'react-native';
+import { realm } from '../../config/models';
 
 class FavesContainer extends Component {
 

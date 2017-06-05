@@ -8,7 +8,7 @@ const Fave = {
     faved_on: 'date',
   }
 };
-const realm = new Realm({schema: [Fave]});
+export const realm = new Realm({schema: [Fave]});
 
 //WHAT ABOUT THAT CRUD
 export const queryFaves = () => {
@@ -29,4 +29,4 @@ export const deleteFave = (faveId) => {
   })
 }
 
-export default Realm;
+export default realm;

@@ -30,7 +30,7 @@ const Session = ({ data, speaker, addFavorite, deleteFavorite, faveIds }) => {
       }
       {
         !faveIds.includes(data.session_id) ?
-        <TouchableOpacity onPress={() => addFavorite(data)}>
+        <TouchableOpacity onPress={() => addFavorite(data)} style={styles.buttonContainer} >
           <LinearGradient
             colors={['#9963ea', '#8797D6']}
             style={styles.linearGradient}

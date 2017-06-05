@@ -4,8 +4,9 @@ import Schedule from './Schedule';
 import { connect } from 'react-redux';
 import { _fetchSessions } from '../../redux/modules/sessions'
 import { _fetchFaves, getFaveIds } from '../../redux/modules/faves';
-import { queryFaves } from '../../config/models'
-import { ActivityIndicator, ListView } from 'react-native'
+import { queryFaves } from '../../config/models';
+import { ActivityIndicator, ListView } from 'react-native';
+import realm from '../../config/models';
 
 class ScheduleContainer extends Component {
 
@@ -21,6 +22,11 @@ class ScheduleContainer extends Component {
   componentDidMount(){
     this.props.dispatch(_fetchFaves())
     this.props.dispatch(_fetchSessions())
+
+    realm.addListener('change', () => {
+      this.props.dispatch(_fetchFaves())
+      this.props.dispatch(_fetchSessions())
+    })
   }
 
   render(){

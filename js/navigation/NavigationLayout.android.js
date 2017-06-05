@@ -59,12 +59,12 @@ class NavigationLayout extends Component {
 
         <DrawerItem
           id="faves"
-          title="faves"
+          title="Faves"
           renderIcon={isSelected => this.renderIcon('md-heart', isSelected)}
           renderTitle={isSelected => this.renderTitle('Favorites', isSelected)}
         >
           <StackNavigation
-            id="about"
+            id="faves"
             initialRoute={Router.getRoute('faves')}
             defaultRouteConfig={defaultRouteConfig}
           />
